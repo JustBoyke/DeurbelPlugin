@@ -40,6 +40,10 @@ public class SignClick implements Listener{
 					}//niet gevonden item
 					Player cp = e.getPlayer();
 					Player p = Bukkit.getPlayer(sign.getLine(2).toString());
+					if(p == null) {
+						cp.sendMessage(ChatColor.RED + "Deze speler is niet online daarom werkt de bel helaas niet :(");
+						return;
+					}
 					if(cooldown.containsKey(cp.getName())) {
 						long left = ((cooldown.get(cp.getName())/1000)+cooldowntime) - (System.currentTimeMillis()/1000);
 						if(left > 0) {
