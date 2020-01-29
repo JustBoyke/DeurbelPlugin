@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
@@ -26,11 +25,11 @@ public class SignClick implements Listener{
 	public HashMap<String, Long> cooldown = new HashMap<String, Long>();
 	private int cooldowntime = 6;
 	
-
+	
 	@EventHandler
 	public void onSignClick(PlayerInteractEvent e){
 		if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-			if(e.getClickedBlock().getType() == Material.SIGN || e.getClickedBlock().getType() == Material.SIGN_POST || e.getClickedBlock().getType() == Material.WALL_SIGN) {
+			if(SignCreate.items.contains(e.getClickedBlock().getType())) {
 				Sign sign = (Sign) e.getClickedBlock().getState();
 				
 				if(sign.getLine(0).equalsIgnoreCase(PREFIX)) {
@@ -57,8 +56,8 @@ public class SignClick implements Listener{
 					Location sl = sign.getLocation();
 					World w = sl.getWorld();
 					
-					p.playSound(pl, "deurbel", 3, 1);
-					w.playSound(sl, "deurbel", 2, 1);
+					p.playSound(pl, "deurbel", 3, 2);
+					w.playSound(sl, "deurbel", 2, 2);
 					p.sendMessage(ChatColor.BLUE + "er wordt aangebeld bij je huis op: X " + ChatColor.RED + sl.getBlockX() + ChatColor.BLUE + " Z " + ChatColor.RED + sl.getBlockZ() + ChatColor.BLUE + " Door: " + ChatColor.RED + cp.getName());
 					cp.sendMessage(ChatColor.BLUE + "Je hebt aangebeld bij " + ChatColor.RED + sign.getLine(2));
 					cooldown.put(cp.getName(), System.currentTimeMillis());

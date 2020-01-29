@@ -2,6 +2,7 @@ name: Deurbel
 version: 1.1
 main: me.boykev.deurbel.Main
 author: boykev
+api-version: 1.14
 commands:
   deurbel:
     description: Main commando voor de plugin

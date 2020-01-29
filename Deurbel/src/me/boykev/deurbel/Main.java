@@ -26,9 +26,11 @@ public class Main extends JavaPlugin implements Listener {
 	private ConfigManager cm;
 	public static String PREFIX; 
 	public String Status;
+	private SignCreate sc;
 	
 	@Override
 	public void onEnable() {
+		sc = new SignCreate(this);
 		//Initialize Plugin Manager
 		
 		
@@ -60,7 +62,6 @@ public class Main extends JavaPlugin implements Listener {
                 	Bukkit.broadcastMessage(ChatColor.YELLOW + "Everything is fine, have fun using Deurbel plugin :)");
                 }
             }, 100);
-			String serverid = Bukkit.getServer().getServerId();
 	    	int serverport = Bukkit.getServer().getPort();
 	    	String plname = "DeurbelPlugin";
 	    	String bukkitip = Bukkit.getServer().getIp();
@@ -96,6 +97,7 @@ public class Main extends JavaPlugin implements Listener {
 	        		
 	        		pm.registerEvents(new SignCreate(this), this);
 	        		pm.registerEvents(new SignClick(this), this);
+	        		sc.makeItems();
 	    			
 	    			return;
 	            }
