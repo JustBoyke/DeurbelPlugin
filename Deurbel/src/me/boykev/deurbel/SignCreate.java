@@ -31,6 +31,13 @@ public class SignCreate implements Listener {
             e.setLine(1, ChatColor.GRAY + "[O]");
             return;
         }
+        if(e.getLine(0).equalsIgnoreCase("[bel]")) {
+        	e.setLine(0, ChatColor.RED + "BEL");
+            e.setLine(1, ChatColor.GRAY + "[O]");
+            e.setLine(2, "(Klik Hier)");
+            
+            return;
+        }
 	}
 	
 	public void makeItems() {

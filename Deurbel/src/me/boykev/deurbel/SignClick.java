@@ -62,6 +62,25 @@ public class SignClick implements Listener{
 					cp.sendMessage(ChatColor.BLUE + "Je hebt aangebeld bij " + ChatColor.RED + sign.getLine(2));
 					cooldown.put(cp.getName(), System.currentTimeMillis());
 					
+				}
+				if(sign.getLine(0).equalsIgnoreCase(ChatColor.RED + "BEL")) {
+					Player cp = e.getPlayer();
+					if(cooldown.containsKey(cp.getName())) {
+						long left = ((cooldown.get(cp.getName())/1000)+cooldowntime) - (System.currentTimeMillis()/1000);
+						if(left > 0) {
+							cp.sendMessage(ChatColor.RED + "Je moet nog " + left + " seconden wachten tot je weer kunt bellen!!");
+							return;
+						}
+					}
+					
+					
+					Location sl = sign.getLocation();
+					World w = sl.getWorld();
+					
+					w.playSound(sl, "deurbel", 2, 2);
+					cp.sendMessage(ChatColor.BLUE + "Je hebt de bel over laten gaan");
+					cooldown.put(cp.getName(), System.currentTimeMillis());
+					
 				}//Check sign for PREFIX
 				return;
 			}//Check for sign
