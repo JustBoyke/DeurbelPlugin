@@ -17,7 +17,6 @@ import net.md_5.bungee.api.ChatColor;
 
 public class SignClick implements Listener{
 	
-	@SuppressWarnings("unused")
 	private Main instance;
 	public SignClick(Main main) {
 		this.instance = main;
