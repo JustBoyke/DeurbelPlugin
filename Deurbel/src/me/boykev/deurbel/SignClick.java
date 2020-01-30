@@ -11,6 +11,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.scheduler.BukkitRunnable;
+
 import net.md_5.bungee.api.ChatColor;
 
 public class SignClick implements Listener{
@@ -73,13 +75,24 @@ public class SignClick implements Listener{
 						}
 					}
 					
-					
+					String link = sign.getLine(3);
+					if(link.isEmpty()) {
+						cp.sendMessage(ChatColor.RED + "Deze bel is niet juist ingesteld!");
+						return;
+					}
 					Location sl = sign.getLocation();
 					World w = sl.getWorld();
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "var edit " + link + " set &2Volgende!");
 					
 					w.playSound(sl, "deurbel", 2, 2);
 					cp.sendMessage(ChatColor.BLUE + "Je hebt de bel over laten gaan");
 					cooldown.put(cp.getName(), System.currentTimeMillis());
+					new BukkitRunnable() {
+						@Override
+						public void run() {
+							Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "var edit " + link + " set &4BEZET!");
+						}
+					}.runTaskLater(instance, 100);
 					
 				}//Check sign for PREFIX
 				return;
