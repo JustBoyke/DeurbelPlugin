@@ -81,7 +81,7 @@ public class SignClick implements Listener{
 					}
 					Location sl = sign.getLocation();
 					World w = sl.getWorld();
-					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "var edit " + link + " set &2Volgende!");
+					com.bergerkiller.bukkit.sl.API.Variables.get(link).set(ChatColor.DARK_GREEN + "Volgende!");
 					
 					w.playSound(sl, "deurbel", 2, 2);
 					cp.sendMessage(ChatColor.BLUE + "Je hebt de bel over laten gaan");
@@ -89,7 +89,7 @@ public class SignClick implements Listener{
 					new BukkitRunnable() {
 						@Override
 						public void run() {
-							Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "var edit " + link + " set &4BEZET!");
+							com.bergerkiller.bukkit.sl.API.Variables.get(link).set(ChatColor.DARK_RED + "BEZET");
 						}
 					}.runTaskLater(instance, 100);
 					
