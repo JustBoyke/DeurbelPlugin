@@ -94,6 +94,39 @@ public class SignClick implements Listener{
 					}.runTaskLater(instance, 100);
 					
 				}//Check sign for PREFIX
+				if(sign.getLine(0).equalsIgnoreCase(ChatColor.RED + "GBEL")) {
+					Player cp = e.getPlayer();
+					if(cooldown.containsKey(cp.getName())) {
+						long left = ((cooldown.get(cp.getName())/1000)+cooldowntime) - (System.currentTimeMillis()/1000);
+						if(left > 0) {
+							cp.sendMessage(ChatColor.RED + "Je moet nog " + left + " seconden wachten tot je weer kunt bellen!!");
+							return;
+						}
+					}
+					
+					String link = sign.getLine(3);
+					if(link.isEmpty()) {
+						cp.sendMessage(ChatColor.RED + "Deze bel is niet juist ingesteld!");
+						return;
+					}
+					Location sl = new Location(sign.getWorld(), -6,74,197);
+					Location sl2 = new Location(sign.getWorld(), 10,74,197);
+					World w = sl.getWorld();
+					World w2 = sl2.getWorld();
+					com.bergerkiller.bukkit.sl.API.Variables.get(link).set(ChatColor.DARK_GREEN + "Volgende!");
+					
+					w.playSound(sl, "deurbel", 2, 2);
+					w2.playSound(sl,"deurbel", 2, 2);
+					cp.sendMessage(ChatColor.BLUE + "Je hebt de bel over laten gaan");
+					cooldown.put(cp.getName(), System.currentTimeMillis());
+					new BukkitRunnable() {
+						@Override
+						public void run() {
+							com.bergerkiller.bukkit.sl.API.Variables.get(link).set(ChatColor.DARK_RED + "BEZET");
+						}
+					}.runTaskLater(instance, 100);
+					
+				}//Check sign for PREFIX
 				return;
 			}//Check for sign
 			return;

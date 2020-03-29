@@ -38,6 +38,13 @@ public class SignCreate implements Listener {
             
             return;
         }
+        if(e.getLine(0).equalsIgnoreCase("[gbel]")) {
+        	e.setLine(0, ChatColor.RED + "GBEL");
+            e.setLine(1, ChatColor.GRAY + "[O]");
+            e.setLine(2, "(Klik Hier)");
+            
+            return;
+        }
 	}
 	
 	public void makeItems() {
