@@ -18,6 +18,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import me.boykev.deurbel.ConfigManager;
 import net.md_5.bungee.api.ChatColor;
 
 
@@ -148,7 +149,7 @@ public class Main extends JavaPlugin implements Listener {
 			Player p = (Player) sender;
 			if(args.length != 1 ) {
 				p.sendMessage(ChatColor.GOLD + "Deurbel is een plugin gemaakt door boykev");
-				p.sendMessage(ChatColor.GOLD + "© Namaken of Verkopen niet toegestaan");
+				p.sendMessage(ChatColor.GOLD + "ï¿½ Namaken of Verkopen niet toegestaan");
 				PluginDescriptionFile pdf = this.getDescription();
 				p.sendMessage(ChatColor.GREEN + "Plugin Versie: " + ChatColor.GRAY + pdf.getVersion());
 				return false;
