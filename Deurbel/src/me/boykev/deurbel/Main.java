@@ -8,7 +8,6 @@ import java.net.URLConnection;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.libs.jline.internal.Log;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -130,11 +129,11 @@ public class Main extends JavaPlugin implements Listener {
 	            }
 	            else { 
 	            	Bukkit.getServer().getPluginManager().disablePlugin(this);
-		            Log.info(ChatColor.DARK_PURPLE + "Licentie FAILD" + licfinal);
+		            Bukkit.getLogger().info(ChatColor.DARK_PURPLE + "Licentie FAILD" + licfinal);
 	            }
 	        } catch (Exception e) {
 	            e.printStackTrace();
-	            Log.info(ChatColor.DARK_PURPLE + "Licentie FAILD");
+	            Bukkit.getLogger().info(ChatColor.DARK_PURPLE + "Licentie FAILD");
 	        }
 		}
 		
